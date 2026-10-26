@@ -48,6 +48,7 @@
 %-------------------------------------------------------------------------------
 % Needed to make fixed length table
 \RequirePackage{array}
+\RequirePackage{tabularx}
 % Needed to handle list environment
 \RequirePackage{enumitem}
 % Needed to handle text alignment
@@ -654,7 +655,7 @@
   \vspace{-2mm}
   \begin{center}
     \setlength\tabcolsep{0pt}
-    \setlength{\extrarowheight}{0pt}
+    \setlength{\extrarowheight}{0pt}%
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
 }{%
     \end{tabular*}
@@ -670,13 +671,13 @@
 \newenvironment{cvskills}{%
   \vspace{\acvSectionContentTopSkip}
   \vspace{-2.0mm}
-  \begin{center}
-    \setlength\tabcolsep{1ex}
-    \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r >{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{\textwidth * \real{0.9}}}
+  \par\noindent
+    \setlength\tabcolsep{1ex}%
+    \setlength{\extrarowheight}{0pt}%
+    \tabularx{\textwidth}{@{} r >{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X @{}}
 }{%
-    \end{tabular*}
-  \end{center}
+    \endtabularx
+  \par
 }
 % Define a line of cv information(skill)
 % Usage: \cvskill{<type>}{<skillset>}
