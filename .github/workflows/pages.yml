@@ -35,7 +35,10 @@ jobs:
             url xcolor xifthen xkeyval
             bigintcalc bitset gettitlestring iftex infwarerr intcalc
             kvdefinekeys ltxcmds pdfescape pdftexcmds stringenc uniquecounter
-      - run: for l in fr en vn; do latexmk -xelatex -interaction=nonstopmode -halt-on-error resume-$l.tex; done
+      - run: |
+          # fontawesome.sty loads "FontAwesome" by name, so fontconfig must see it
+          mkdir -p ~/.fonts && cp "$(kpsewhich FontAwesome.otf)" ~/.fonts/ && fc-cache -f
+          for l in fr en vn; do latexmk -xelatex -interaction=nonstopmode -halt-on-error resume-$l.tex; done
       - run: |
           mkdir site
           for l in fr en vn; do cp resume-$l.pdf site/$l.pdf; done
@@ -65,6 +68,11 @@ jobs:
           else
             gh release create "$ver" dist/*.pdf --title "$ver" --generate-notes
           fi
+
+      - uses: actions/upload-artifact@v5  # TEMP: ci-speed test only
+        with:
+          name: pdfs
+          path: site/*.pdf
 
       # Pages always shows the latest versioned release
       - if: startsWith(github.ref, 'refs/tags/v')
