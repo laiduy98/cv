@@ -25,8 +25,8 @@ jobs:
           latexmk_use_xelatex: true
       - run: |
           mkdir site
-          cp resume.pdf site/CV_Khang_Duy_LAI_FR.pdf
-          echo '<meta http-equiv="refresh" content="0; url=CV_Khang_Duy_LAI_FR.pdf">' > site/index.html
+          cp resume.pdf site/Khang-Duy-Lai-CV-FR.pdf
+          echo '<meta http-equiv="refresh" content="0; url=Khang-Duy-Lai-CV-FR.pdf">' > site/index.html
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site

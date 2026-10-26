@@ -2,7 +2,7 @@
 
 French résumé built with the [Awesome CV](https://github.com/posquit0/Awesome-CV) LaTeX template.
 
-**PDF:** https://laiduy98.github.io/cv/CV_Khang_Duy_LAI_FR.pdf — rebuilt and published by GitHub Actions on every push to `main` ([workflow](.github/workflows/pages.yml)).
+**PDF:** https://laiduy98.github.io/cv/Khang-Duy-Lai-CV-FR.pdf — rebuilt and published by GitHub Actions on every push to `main` ([workflow](.github/workflows/pages.yml)).
 
 ## Structure
 
