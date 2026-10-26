@@ -69,11 +69,6 @@ jobs:
             gh release create "$ver" dist/*.pdf --title "$ver" --generate-notes
           fi
 
-      - uses: actions/upload-artifact@v5  # TEMP: ci-speed test only
-        with:
-          name: pdfs
-          path: site/*.pdf
-
       # Pages always shows the latest versioned release
       - if: startsWith(github.ref, 'refs/tags/v')
         uses: actions/upload-pages-artifact@v5
