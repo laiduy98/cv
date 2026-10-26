@@ -621,7 +621,8 @@
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+    % skip the description row when it is empty (expandable test, so \multicolumn stays first in the cell)
+    \if\relax\detokenize{#5}\relax\else\multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}\fi
   \end{tabular*}%
 }
 

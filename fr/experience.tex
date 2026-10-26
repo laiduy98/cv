@@ -11,53 +11,60 @@
 
 %---------------------------------------------------------
   \cventry
-    {\textbf{Machine Learning Engineer}{\enskip\cdotp\enskip}Python, LLM, AWS, Elasticsearch} % Job title
-    {Lundi Matin} % Organization
-    {Montpellier, France} % Location
-    {Mai. 2024 - Présent} % Date(s)
+    {\textbf{Machine Learning Engineer}{\enskip\cdotp\enskip}Python, Airflow, Kubernetes, LLM} % Job title
+    {AI6} % Organization
+    {Paris, France} % Location
+    {Juil. 2026 - Présent} % Date(s)
     {
       \begin{cvitems} % Description(s) of tasks/responsibilities
-        \item {Conception d’un système RAG: ingestion automatisée (Lambda/S3), parsing JSON, embeddings OpenAI, stockage indexé dans OpenSearch pour recherche sémantique.}
-        \item {Maintenance, support production et évolution de services SaaS pour clients B2B, hébergés et intégrés sur AWS (Izberg Marketplace).}
-        \item {Développement, automatisation et déploiement de pipelines CI/CD serverless (Zappa, GitHub Actions, Travis CI) pour Lambda \& micro-services critiques (ECS).}
-        \item {Analyse des logs, troubleshooting avancé, monitoring et amélioration continue.}
+        \item {Mise en place de la première plateforme de data pipelines de l’entreprise sur Airflow 3 et Kubernetes, déployée en GitOps (Helm, ArgoCD) avec SSO Keycloak et RBAC par équipe.}
+        \item {Développement de 16 DAGs (risques naturels, Météo-France, benchmarks) exécutés via KubernetesPodOperator, avec stockage S3 et suivi MLflow.}
+        \item {Conception d’un harness d’évaluation pour un assistant vocal (Gemini Live, RAG) avec utilisateur simulé, LLM-as-judge (DeepEval) et suivi des scores dans MLflow.}
       \end{cvitems}
     }
 
 
 %---------------------------------------------------------
   \cventry
-    {\textbf{Data Scientist}{\enskip\cdotp\enskip}Python, GCP, SQL, LLM, OpenCV} % Job title
-    {SFR} % Organization
-    {Paris, France} % Location
-    {Mai. 2022 - Jan. 2024} % Date(s)
+    {\textbf{Développeur Python}{\enskip\cdotp\enskip}Python, Django, Celery, AWS} % Job title
+    {Lundi Matin} % Organization
+    {Montpellier, France} % Location
+    {Mai 2024 - Juin 2026} % Date(s)
     {
       \begin{cvitems} % Description(s) of tasks/responsibilities
-        \item {Contribution à la migration des cycles de modèles de ML et des pipelines de data vers GCP en utilisant VertexAI, SQL et BigQuery.}
-        \item {Extraction et préparation de données depuis Teradata, Hive et Impala pour constituer des datasets exploitables dans le processus de prévision.}
-        \item {Analyse des données des registres d’appels clients pour extraire des insights et améliorer le service clientèle.}
-        \item {Optimisation d’un système d’alerte de falsification d’images, augmentant la précision de 90 \% à 99 \%.}
-        \item {Conception de tableaux de bord analytiques pour l’équipe Marketing avec Plotly et Matplotlib sur Python.}
+        \item {Conception d’un module RAG à la demande d’un client, avec ingestion automatisée (Lambda/S3), embeddings OpenAI et recherche sémantique sur OpenSearch.}
+        \item {Développement et maintenance d’Izberg, plateforme SaaS B2B permettant à de grandes enseignes d’opérer leur propre marketplace (monolithe Django de \textasciitilde 4 M lignes, micro-services et traitements asynchrones Celery sur AWS).}
+        \item {Support production (analyse des logs CloudWatch, diagnostic d’incidents sur SQS, RDS, ECS et Lambda) et CI/CD serverless (Zappa, GitHub Actions, Travis CI).}
+      \end{cvitems}
+    }
+
+
+%---------------------------------------------------------
+  \cventry
+    {\textbf{Data Scientist (alternance)}{\enskip\cdotp\enskip}Python, OpenCV, CLIP, GCP, LLM} % Job title
+    {SFR} % Organization
+    {Paris, France} % Location
+    {Mai 2022 - Jan. 2024} % Date(s)
+    {
+      \begin{cvitems} % Description(s) of tasks/responsibilities
+        \item {Détection de photos frauduleuses (réutilisées, recadrées, retouchées) par image fingerprinting pour les doublons, puis preprocessing OpenCV et similarité CLIP avec seuil pour les variantes ; recall porté de 90 \% à 99 \%.}
+        \item {POC MLOps pour le modèle de prédiction du churn sur GCP (Vertex AI, BigQuery), à partir de données Teradata, Hive et Impala.}
+        \item {Analyse des appels clients par LLM pour identifier les principaux motifs de résiliation et orienter les actions de rétention.}
       \end{cvitems}
     }
 
 % %---------------------------------------------------------
 
   \cventry
-    {\textbf{AI/Data Engineer}{\enskip\cdotp\enskip}Python, AWS, Pandas, OpenCV, Mécanique des fluides} % Job title
+    {\textbf{Ingénieur IA}{\enskip\cdotp\enskip}Python, AWS, OpenCV, FastAPI} % Job title
     {VMO - filiale ALTEN} % Organization
     {Hanoï, Vietnam} % Location
-    {Oct. 2019 - Dec. 2021} % Date(s)
+    {Oct. 2019 - Déc. 2021} % Date(s)
     {
       \begin{cvitems} % Description(s) of tasks/responsibilities
-        \item {Automatisation de la collecte et du nettoyage de données via des scripts Python, réduisant le temps de traitement.}
-        \item {Déploiement de modèles ML sur des endpoints API avec FastAPI, optimisant les performances des applications.}
-        \item {Développement d’un système embarqué de détection d’objets et de visages sur une sonnette intelligente, en exploitant des services AWS tels que SageMaker, Rekognition, Lambda et S3.}
-        % \item {Application de LightFM et filtrage collaboratif pour le système de recommandation d’emplois.}
-        \item {Participation à la création d’un système de recommandation immobilière sur meeyland.com avec LightFM, augmentant le taux de clics de 20 \%.}
-        \item {Prévision des typhons et des conditions météorologiques extrêmes à l’aide de données satellitaires et d’images radar.}
-        % \item {Lecteur de carte d’identité en appliquant OCR et Computer Vision pour le gouvernement vietnamien.}
-        % \item {Utilisation de Pytest de tous les projets chez VMO Holdings.}
+        \item {Développement d’un système de détection d’objets et de visages pour une sonnette intelligente (AWS SageMaker, Rekognition, Lambda, S3).}
+        \item {Déploiement de modèles ML en API avec FastAPI.}
+        \item {Contribution au système de recommandation immobilière de meeyland.com (LightFM), +20 \% de taux de clics.}
       \end{cvitems}
     }
 
