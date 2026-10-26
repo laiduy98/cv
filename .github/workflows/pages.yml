@@ -3,15 +3,16 @@ name: Build CV
 on:
   push:
     branches: [main]
+    tags: ['v*']
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -19,19 +20,53 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # full history + tags for git describe
       - uses: xu-cheng/latex-action@v3
         with:
-          root_file: resume.tex
+          root_file: |
+            resume-fr.tex
+            resume-en.tex
+            resume-vn.tex
           latexmk_use_xelatex: true
       - run: |
           mkdir site
-          cp resume.pdf site/Khang-Duy-Lai-CV-FR.pdf
-          echo '<meta http-equiv="refresh" content="0; url=Khang-Duy-Lai-CV-FR.pdf">' > site/index.html
-      - uses: actions/upload-pages-artifact@v5
+          for l in fr en vn; do cp resume-$l.pdf site/$l.pdf; done
+          cat > site/index.html <<'HTML'
+          <!doctype html><meta charset="utf-8"><title>Khang Duy Lai - CV</title>
+          <h1>Khang Duy Lai - CV</h1>
+          <ul>
+            <li><a href="fr.pdf">Français</a></li>
+            <li><a href="en.pdf">English</a></li>
+            <li><a href="vn.pdf">Tiếng Việt</a></li>
+          </ul>
+          HTML
+
+      # Release: `tip` (pre-release from main, files named like v5.0-3-gabcdef1)
+      # or `vX.Y` (git tag v5.0 && git push origin v5.0)
+      - if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ver=$([ "$GITHUB_REF_TYPE" = tag ] && echo "$GITHUB_REF_NAME" || git describe --tags --exclude tip --always)
+          mkdir dist
+          for l in fr en vn; do cp site/$l.pdf dist/Khang-Duy-Lai-CV-${l^^}-$ver.pdf; done
+          if [ "$GITHUB_REF_TYPE" != tag ]; then
+            gh release delete tip --cleanup-tag --yes || true
+            gh release create tip dist/*.pdf --prerelease --target "$GITHUB_SHA" \
+              --title "tip" --notes "Latest build of main (${GITHUB_SHA::7})."
+          else
+            gh release create "$ver" dist/*.pdf --title "$ver" --generate-notes
+          fi
+
+      # Pages always shows the latest versioned release
+      - if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
   deploy:
+    if: startsWith(github.ref, 'refs/tags/v')
     needs: build
     runs-on: ubuntu-latest
     environment:
