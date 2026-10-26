@@ -22,13 +22,20 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0  # full history + tags for git describe
-      - uses: xu-cheng/latex-action@v3
+      # Minimal TeX Live (only what awesome-cv needs), cached between runs
+      - uses: TeX-Live/setup-texlive-action@v4
         with:
-          root_file: |
-            resume-fr.tex
-            resume-en.tex
-            resume-vn.tex
-          latexmk_use_xelatex: true
+          packages: >-
+            scheme-infraonly latex-bin xetex latexmk fontname
+            amsmath enumitem environ etoolbox fancyhdr fontawesome fontspec
+            geometry graphics graphics-cfg graphics-def hycolor hyperref
+            ifmtarg kvoptions kvsetkeys l3backend l3kernel l3packages
+            lm-math parskip pgf ragged2e refcount rerunfilecheck setspace
+            sourcesanspro tcolorbox tikzfill tools trimspaces unicode-math
+            url xcolor xifthen xkeyval
+            bigintcalc bitset gettitlestring iftex infwarerr intcalc
+            kvdefinekeys ltxcmds pdfescape pdftexcmds stringenc uniquecounter
+      - run: for l in fr en vn; do latexmk -xelatex -interaction=nonstopmode -halt-on-error resume-$l.tex; done
       - run: |
           mkdir site
           for l in fr en vn; do cp resume-$l.pdf site/$l.pdf; done
